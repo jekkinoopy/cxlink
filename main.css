@@ -1,0 +1,713 @@
+/* h1 {
+  text-decoration: underline;
+} */
+:root {
+    --cx-blue: #1a365d;
+    /* 宸欣沉穩藍：用於內文與商務辨識 */
+    --cx-gold-foil: #d4b26f;
+    /* 燙金高級金：還原名片印刷工藝色 */
+    --paper-bg: #fbf9f6;
+    /* 米白萊妮紙色：營造高雅暖色調背景 */
+    --text-dark: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 預設使用優雅的思源宋體 */
+    font-family: "Noto Serif TC", serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text-dark);
+    line-height: 1.7;
+    background-color: var(--paper-bg);
+}
+
+/* 導覽列 */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(251, 249, 246, 0.95);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(212, 178, 111, 0.2);
+}
+
+.logo {
+    display: block;
+    text-decoration: none;
+}
+
+.logo img {
+    display: block;
+    height: 36px;
+    width: auto;
+}
+
+nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--cx-gold-foil);
+}
+
+.nav-btn {
+    background-color: var(--cx-blue);
+    color: #ffffff !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+}
+
+/* 還原實體名片美學的第一視覺區 */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    background-color: var(--paper-bg);
+}
+
+.hero-card-area {
+    max-width: 800px;
+    padding: 40px;
+}
+
+/* 宸欣互聯完整 LOGO（標誌＋中英文，原始向量檔） */
+.hero-logo {
+    margin-bottom: 20px;
+}
+
+.hero-logo img {
+    display: block;
+    width: 320px;
+    max-width: 80vw;
+    height: auto;
+    margin: 0 auto;
+}
+
+.hero-slogan {
+    font-size: 20px;
+    color: var(--cx-blue);
+    letter-spacing: 6px;
+    margin-bottom: 45px;
+    font-weight: 500;
+}
+
+.cta-btn {
+    background-color: transparent;
+    color: var(--cx-blue);
+    padding: 12px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0;
+    /* 呼應名片方形切邊，採用俐落直角 */
+    border: 1px solid var(--cx-blue);
+    transition: all 0.3s;
+    letter-spacing: 2px;
+}
+
+.cta-btn:hover {
+    background-color: var(--cx-blue);
+    color: #ffffff;
+}
+
+/* 區塊通用樣式 */
+section {
+    padding: 100px 10%;
+    text-align: center;
+    /* 一頁式錨點跳轉時避開固定導覽列 */
+    scroll-margin-top: 76px;
+}
+
+.section-title {
+    font-size: 26px;
+    margin-bottom: 60px;
+    color: var(--cx-blue);
+    letter-spacing: 3px;
+}
+
+/* 關於我們 */
+.about {
+    background-color: #ffffff;
+}
+
+.about p {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 16px;
+    color: #555;
+    line-height: 2.2;
+    text-align: justify;
+}
+
+/* =========================================
+   組織架構圖 (無縫整合企業變數)
+   ========================================= */
+.organization {
+    background-color: #ffffff;
+}
+
+/* 組織圖：照客戶原本的樹狀排法，所有節點同一種樣式，層級只用字重區分 */
+.org-chart {
+    --org-line: 1px solid rgba(212, 178, 111, 0.7);
+    --org-drop: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.org-chart .node {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 10px 18px;
+    line-height: 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cx-blue);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid rgba(212, 178, 111, 0.5);
+    transition: all 0.3s ease;
+}
+
+.org-chart .node:hover {
+    background: var(--cx-blue);
+    color: var(--cx-gold-foil);
+    border-color: var(--cx-blue);
+}
+
+/* 總經理室與事業單位：深藍底白字 */
+.org-chart .node-top,
+.org-chart .node-group {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--cx-blue);
+    border-color: var(--cx-blue);
+}
+
+.org-chart .node-top {
+    min-width: 200px;
+    padding: 14px 36px;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 2px;
+}
+
+/* 處：白底深藍框，跟事業群（深藍底）和部（淡金框）分開 */
+.org-chart .node-div {
+    border-color: var(--cx-blue);
+    font-weight: 600;
+}
+
+.org-chart .node-dept {
+    min-width: 116px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.org-unit {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 節點往下接到下一層的直線 */
+.org-unit > .node:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    height: var(--org-drop);
+    border-left: var(--org-line);
+}
+
+.org-row {
+    display: flex;
+    align-self: stretch;
+    margin-top: var(--org-drop);
+}
+
+.org-row > .org-unit {
+    flex: 1 1 0;
+    padding: var(--org-drop) 8px 0;
+}
+
+.org-row > .org-unit.span-2 {
+    flex-grow: 2;
+}
+
+/* 同層之間的橫線，每一欄畫自己那段，相鄰欄位剛好接起來 */
+.org-row > .org-unit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: var(--org-line);
+}
+
+.org-row > .org-unit:first-child::before {
+    left: 50%;
+}
+
+.org-row > .org-unit:last-child::before {
+    right: 50%;
+}
+
+.org-row > .org-unit::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: var(--org-drop);
+    border-left: var(--org-line);
+}
+
+/* 部：直排在處的正下方，一條直線串起來 */
+.org-depts {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+    margin: var(--org-drop) 0 0;
+    padding: 0;
+}
+
+.org-depts::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 20px;
+    border-left: var(--org-line);
+}
+
+/* 核心服務 */
+.services {
+    background-color: var(--paper-bg);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 45px 35px;
+    border: 1px solid rgba(212, 178, 111, 0.15);
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.service-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--cx-gold-foil);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+}
+
+.service-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.service-icon {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--cx-blue);
+    color: var(--cx-gold-foil);
+    font-size: 20px;
+}
+
+.service-card h3 {
+    margin-bottom: 0;
+    font-size: 19px;
+    color: var(--cx-blue);
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 合作流程 */
+.process {
+    background-color: #ffffff;
+}
+
+.process-steps {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.step {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 200px;
+    position: relative;
+    text-align: center;
+}
+
+.step-num {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--cx-blue);
+    color: var(--cx-gold-foil);
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+/* 步驟之間的橫向連接線，最後一個不畫 */
+.step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 27px;
+    left: calc(50% + 27px);
+    width: calc(100% - 54px);
+    border-top: 1px solid rgba(212, 178, 111, 0.5);
+}
+
+.step h3 {
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: var(--cx-blue);
+}
+
+.step p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* 商品代理：合作品牌跑馬燈 */
+.brands {
+    background-color: var(--paper-bg);
+}
+
+.brand-marquee {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.brand-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: max-content;
+    animation: brand-scroll 25s linear infinite;
+}
+
+.brand-track:hover {
+    animation-play-state: paused;
+}
+
+.brand-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 150px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(212, 178, 111, 0.3);
+    font-family: "Playfair Display", serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--cx-blue);
+    text-transform: uppercase;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.brand-logo:hover {
+    background: var(--cx-blue);
+    color: var(--cx-gold-foil);
+    border-color: var(--cx-blue);
+}
+
+/* 目前唯一有實際 Logo 的品牌，放大並獨立樣式避免跟文字佔位框混淆 */
+.brand-logo-featured {
+    width: 200px;
+    height: 140px;
+    flex-direction: column;
+    gap: 6px;
+    border-color: var(--cx-gold-foil);
+    border-width: 2px;
+}
+
+.brand-logo-featured:hover {
+    background: #ffffff;
+    border-color: var(--cx-gold-foil);
+}
+
+.brand-logo-featured img {
+    max-height: 85px;
+    width: auto;
+    object-fit: contain;
+}
+
+.brand-logo-featured span {
+    font-family: "Noto Serif TC", serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: none;
+    color: var(--cx-blue);
+}
+
+@keyframes brand-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* 聯絡我們 */
+.contact {
+    background-color: #1a2433;
+    color: #ffffff;
+}
+
+.contact .section-title {
+    color: #ffffff;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+    min-width: 320px;
+    padding: 20px;
+}
+
+.contact-info h3 {
+    color: var(--cx-gold-foil);
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.contact-info .corp-name {
+    font-size: 15px;
+    color: #aaa;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.contact-info p {
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #ddd;
+    font-weight: 300;
+}
+
+/* 圖示與資訊之間的間距，換行時文字對齊不跑到圖示下方 */
+.contact-info p {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.contact-info p i {
+    flex-shrink: 0;
+}
+
+.contact-info a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: var(--cx-gold-foil);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--cx-gold-foil);
+}
+
+.submit-btn {
+    background: var(--cx-gold-foil);
+    color: #1a2433;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    background: #e5c380;
+}
+
+footer {
+    background: #111822;
+    color: #666;
+    padding: 25px;
+    font-size: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .hero-slogan {
+        font-size: 16px;
+    }
+
+    nav {
+        display: none;
+    }
+}
+
+/* =========================================
+   組織架構圖 - RWD 響應式設計 (平板與手機版)
+   ========================================= */
+@media (max-width: 900px) {
+    /* 手機與平板：改成靠左的樹狀清單 */
+    .org-chart {
+        --org-indent: 24px;
+        --mid: 22px;
+    }
+
+    .org-unit {
+        align-items: flex-start;
+    }
+
+    .org-unit > .node:not(:last-child)::after {
+        display: none;
+    }
+
+    .org-row {
+        flex-direction: column;
+        margin-top: 0;
+        padding-left: var(--org-indent);
+    }
+
+    .org-row > .org-unit {
+        padding: 12px 0 0;
+    }
+
+    .org-row > .org-unit::before,
+    .org-row > .org-unit:first-child::before {
+        left: calc(var(--org-indent) / -2);
+        right: auto;
+        top: 0;
+        bottom: 0;
+        border-top: none;
+        border-left: var(--org-line);
+    }
+
+    .org-row > .org-unit:last-child::before {
+        bottom: auto;
+        height: calc(12px + var(--mid));
+    }
+
+    .org-row > .org-unit::after {
+        left: calc(var(--org-indent) / -2);
+        top: calc(12px + var(--mid));
+        width: calc(var(--org-indent) / 2);
+        height: 0;
+        border-left: none;
+        border-top: var(--org-line);
+    }
+
+    .org-depts {
+        align-items: flex-start;
+        gap: 0;
+        margin: 0;
+        padding-left: var(--org-indent);
+    }
+
+    .org-depts::before {
+        left: calc(var(--org-indent) / 2);
+        bottom: 20px;
+    }
+
+    .org-depts > .node {
+        margin-top: 10px;
+    }
+
+    .org-depts > .node::after {
+        content: "";
+        position: absolute;
+        left: calc(var(--org-indent) / -2 - 1px);
+        top: 50%;
+        width: calc(var(--org-indent) / 2);
+        border-top: var(--org-line);
+    }
+}
