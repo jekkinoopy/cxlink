@@ -160,8 +160,9 @@ section {
 /* =========================================
    組織架構圖 (無縫整合企業變數)
    ========================================= */
+/* 設計作品區是白底，組織架構改米白，讓區塊底色保持一白一米交錯 */
 .organization {
-    background-color: #ffffff;
+    background-color: var(--paper-bg);
 }
 
 /* 組織圖：照客戶原本的樹狀排法，所有節點同一種樣式，層級只用字重區分 */
@@ -363,6 +364,83 @@ section {
     color: #666;
 }
 
+/* 一句重點常駐顯示，完整說明收合在「了解更多」裡 */
+.services-grid {
+    align-items: start;
+}
+
+.service-card .service-lead {
+    text-align: center;
+    font-size: 16px;
+    color: var(--cx-blue);
+    letter-spacing: 1px;
+}
+
+/* grid-template-rows 0fr → 1fr 讓高度可以平滑展開（沒有 JS 時維持全部展開） */
+.js .service-more {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease;
+}
+
+.js .service-more > div {
+    overflow: hidden;
+}
+
+.service-more p {
+    padding-top: 18px;
+    text-align: justify;
+    line-height: 1.9;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+html:not(.js) .service-more p,
+.service-card.open .service-more p {
+    opacity: 1;
+    transition-delay: 0.15s;
+}
+
+.service-card.open .service-more {
+    grid-template-rows: 1fr;
+}
+
+.service-toggle {
+    display: none;
+    position: relative;
+    z-index: 1;
+    margin: 20px auto 0;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 2px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(212, 178, 111, 0.5);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--cx-gold-foil);
+    cursor: pointer;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.js .service-toggle {
+    display: flex;
+}
+
+.service-toggle:hover {
+    color: var(--cx-blue);
+    border-color: var(--cx-blue);
+}
+
+.service-toggle i {
+    font-size: 10px;
+    transition: transform 0.4s ease;
+}
+
+.service-card.open .service-toggle i {
+    transform: rotate(180deg);
+}
+
 /* 合作流程 */
 .process {
     background-color: #ffffff;
@@ -514,6 +592,332 @@ section {
 
     to {
         transform: translateX(-50%);
+    }
+}
+
+/* 設計作品：分類頁籤，每類一排三件，縮圖統一 4:3 */
+.works {
+    background-color: #ffffff;
+}
+
+.works-intro {
+    max-width: 640px;
+    margin: -30px auto 40px;
+    font-size: 15px;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+.works-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 40px;
+    margin-bottom: 50px;
+}
+
+.works-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 2px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #8a94a3;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.works-tab i {
+    color: var(--cx-gold-foil);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.works-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 2px solid var(--cx-gold-foil);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.works-tab:hover,
+.works-tab.active {
+    color: var(--cx-blue);
+}
+
+.works-tab:hover i,
+.works-tab.active i {
+    opacity: 1;
+}
+
+.works-tab.active::after {
+    transform: scaleX(1);
+}
+
+.works-panel {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.works-panel.active {
+    display: grid;
+}
+
+/* 只有兩件的分類（網頁設計）：兩欄寬版，縮圖改 16:10 比較貼近網頁截圖，高度也不會比三欄高太多 */
+.works-panel.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.works-panel.cols-2 .work-thumb {
+    aspect-ratio: 16 / 10;
+}
+
+/* 切換頁籤時作品依序浮現（display 切換會讓動畫重新播放） */
+.works-panel.active .work-item {
+    animation: work-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.works-panel.active .work-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.works-panel.active .work-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* 第一次捲到之前先暫停，捲到時才播 */
+.js .works-panels:not(.in-view) .work-item {
+    animation-play-state: paused;
+}
+
+@keyframes work-in {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.work-item {
+    text-align: left;
+}
+
+.work-thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid rgba(212, 178, 111, 0.3);
+    background: var(--paper-bg);
+}
+
+.work-thumb img,
+.work-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* 尚未放作品圖時的佔位框：深藍底、淡金圖示 */
+.work-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(212, 178, 111, 0.18), transparent 55%),
+        linear-gradient(135deg, #1a365d, #22314a);
+    color: var(--cx-gold-foil);
+    font-size: 42px;
+}
+
+.work-placeholder i {
+    opacity: 0.45;
+}
+
+/* hover：圖片微微放大，覆上一層深藍與「查看」圖示 */
+.work-thumb::after {
+    content: "\f00e";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--cx-gold-foil);
+    background: rgba(17, 24, 34, 0.45);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.work-item.clickable {
+    cursor: pointer;
+}
+
+.work-item.clickable:hover .work-thumb::after,
+.work-item.clickable:focus-visible .work-thumb::after {
+    opacity: 1;
+}
+
+.work-item:hover .work-thumb img,
+.work-item:hover .work-placeholder {
+    transform: scale(1.05);
+}
+
+/* 影音作品：常駐金色播放鍵 */
+.work-item.is-video .work-thumb::after {
+    content: "\f04b";
+    opacity: 1;
+    background: transparent;
+}
+
+.work-item.is-video .work-thumb::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border: 1px solid var(--cx-gold-foil);
+    border-radius: 50%;
+    background: rgba(17, 24, 34, 0.35);
+    transition: transform 0.4s, background-color 0.4s;
+}
+
+/* 影音佔位框只留播放鍵，避免兩個圖示疊在一起 */
+.work-item.is-video .work-placeholder i {
+    display: none;
+}
+
+.work-item.is-video .work-thumb::after {
+    z-index: 2;
+    padding-left: 4px;
+}
+
+.work-item.is-video:hover .work-thumb::before {
+    transform: scale(1.12);
+    background: rgba(17, 24, 34, 0.6);
+}
+
+.work-item figcaption {
+    padding-top: 16px;
+}
+
+.work-item figcaption span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--cx-gold-foil);
+}
+
+.work-item figcaption h3 {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--cx-blue);
+    letter-spacing: 1px;
+}
+
+/* 燈箱 */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 5vw;
+    background: rgba(12, 17, 25, 0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s;
+}
+
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-body {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+    transform: scale(0.96);
+    transition: transform 0.4s ease;
+}
+
+.lightbox.open .lightbox-body {
+    transform: none;
+}
+
+.lightbox-body img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.lightbox-body iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(212, 178, 111, 0.5);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cx-gold-foil);
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.lightbox-close:hover {
+    background: var(--cx-gold-foil);
+    color: #111822;
+}
+
+@media (max-width: 900px) {
+    .works-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .works-panel,
+    .works-panel.cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .works-tabs {
+        gap: 4px 24px;
     }
 }
 

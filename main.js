@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ".about p",
         ".service-card",
         ".brand-marquee",
+        ".works-intro, .works-tabs",
         ".org-chart .node",
         ".contact-info, .contact-form",
     ];
@@ -60,7 +61,69 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
     );
-    document.querySelectorAll(".reveal, .process-steps").forEach((el) => revealObserver.observe(el));
+    document.querySelectorAll(".reveal, .process-steps, .works-panels").forEach((el) => revealObserver.observe(el));
+
+    // 核心服務：展開 / 收合完整說明
+    document.querySelectorAll(".service-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const open = btn.closest(".service-card").classList.toggle("open");
+            btn.setAttribute("aria-expanded", open);
+            btn.firstChild.textContent = open ? "收合" : "了解更多";
+        });
+    });
+
+    // 設計作品：分類頁籤切換
+    const tabs = document.querySelectorAll(".works-tab");
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            tabs.forEach((t) => {
+                const selected = t === tab;
+                t.classList.toggle("active", selected);
+                t.setAttribute("aria-selected", selected);
+                document.getElementById(t.getAttribute("aria-controls")).classList.toggle("active", selected);
+            });
+        });
+    });
+
+    // 設計作品：點擊放大圖片，影音作品播放影片
+    const lightbox = document.createElement("div");
+    lightbox.className = "lightbox";
+    lightbox.innerHTML = '<button class="lightbox-close" aria-label="關閉"><i class="fa-solid fa-xmark"></i></button><div class="lightbox-body"></div>';
+    document.body.appendChild(lightbox);
+    const lightboxBody = lightbox.querySelector(".lightbox-body");
+
+    const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+        setTimeout(() => (lightboxBody.innerHTML = ""), 400); // 清掉 iframe，影片才會停止
+    };
+    lightbox.addEventListener("click", (e) => {
+        if (!e.target.closest(".lightbox-body img, .lightbox-body iframe")) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+    });
+
+    document.querySelectorAll(".work-item").forEach((item) => {
+        const img = item.querySelector(".work-thumb img");
+        const video = item.dataset.video;
+        if (!img && !video) return; // 還是佔位框的作品不開燈箱
+        item.classList.add("clickable");
+        item.tabIndex = 0;
+        item.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") item.click();
+        });
+        item.addEventListener("click", () => {
+            if (video) {
+                const src = video + (video.includes("?") ? "&" : "?") + "autoplay=1";
+                lightboxBody.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+            } else {
+                lightboxBody.innerHTML = `<img src="${img.src}" alt="${img.alt}" />`;
+            }
+            lightbox.classList.add("open");
+            document.body.style.overflow = "hidden";
+        });
+    });
 
     // 導覽列：標示目前所在的區塊
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
