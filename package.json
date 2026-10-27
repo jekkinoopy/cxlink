@@ -1,8 +1,9 @@
 {
-    "name": "html-css",
+    "name": "cxlink",
     "version": "1.0.0",
-    "description": "A template for HTML and CSS",
+    "description": "宸欣互聯 CHENXIN LINK 官方網站",
     "main": "index.html",
+    "private": true,
     "scripts": {
         "start": "serve"
     },
@@ -10,8 +11,8 @@
         "html",
         "css"
     ],
-    "author": "Ives van Hoorne",
-    "license": "MIT",
+    "author": "JEKKI LAB",
+    "license": "UNLICENSED",
     "devDependencies": {
         "serve": "11.2.0"
     }
