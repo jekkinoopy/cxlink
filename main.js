@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ".brand-marquee",
         ".works-intro, .works-tabs",
         ".org-chart .node",
+        ".contact-slogan-block",
         ".contact-info, .contact-form",
     ];
     groups.forEach((selector) => {

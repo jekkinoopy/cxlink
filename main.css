@@ -946,18 +946,120 @@ html:not(.js) .service-more p,
     padding: 20px;
 }
 
-.contact-info h3 {
-    color: var(--cx-gold-foil);
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-weight: 500;
+/* 聯絡標語：獨立置中在聯絡區最上方，英文小標（兩側金線）+ 燙金大字
+   區塊寬度 = 英文小標整排的寬度，底下細線跟它一樣長、左右切齊 */
+.contact-slogan-block {
+    width: fit-content;
+    margin: 0 auto 70px;
 }
 
+/* 標語底下的細線：跟英文小標的線同款（1px、半透明），長度等於英文小標整排 */
+.contact-slogan-block::after {
+    content: "";
+    display: block;
+    margin-top: 20px;
+    border-top: 1px solid var(--cx-gold-foil);
+    opacity: 0.8;
+}
+
+.contact-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--cx-gold-foil);
+    opacity: 0.8;
+}
+
+.contact-eyebrow::before,
+.contact-eyebrow::after {
+    content: "";
+    width: 36px;
+    border-top: 1px solid var(--cx-gold-foil);
+}
+
+/* 標語比英文小標寬：外層寬度設 0，不參與區塊寬度計算，再用 flex 置中讓字往兩側等量溢出 */
+.contact-slogan {
+    display: flex;
+    justify-content: center;
+    width: 0;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+.contact-slogan span {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.4;
+    /* letter-spacing 會在最後一個字後面多留空白，用負 margin 抵銷，左右才會剛好切齊字的邊緣 */
+    letter-spacing: 12px;
+    margin-right: -12px;
+    /* 燙金漸層字，亮面緩慢流動，呼應首頁 Logo 的反光 */
+    background: linear-gradient(110deg, #b8944f 0%, #e5c380 20%, #f7e7bf 30%, #d4b26f 45%, #b8944f 60%, #e5c380 80%, #b8944f 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: foil-text 8s linear infinite;
+}
+
+@media (max-width: 600px) {
+    .contact-slogan span {
+        font-size: 28px;
+        letter-spacing: 6px;
+        margin-right: -6px;
+    }
+
+    .contact-slogan-block {
+        margin-bottom: 50px;
+    }
+
+    .contact-eyebrow {
+        gap: 10px;
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .contact-eyebrow::before,
+    .contact-eyebrow::after {
+        width: 20px;
+    }
+}
+
+@keyframes foil-text {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+/* 公司名稱：中文主名 + 英文副名，下方細線與聯絡資訊分隔 */
 .contact-info .corp-name {
-    font-size: 15px;
-    color: #aaa;
-    margin-bottom: 25px;
-    letter-spacing: 1px;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.corp-name strong {
+    display: block;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: #ffffff;
+}
+
+.corp-name span {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #8a94a3;
 }
 
 .contact-info p {
