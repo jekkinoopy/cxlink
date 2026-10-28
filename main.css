@@ -988,6 +988,21 @@ html:not(.js) .service-more p,
     color: var(--cx-gold-foil);
 }
 
+/* 英文地址：接在中文地址下方，字小一號、顏色淡一點 */
+.contact-info .addr-en {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover .addr-en {
+    color: var(--cx-gold-foil);
+}
+
 .form-group {
     margin-bottom: 15px;
 }
