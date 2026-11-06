@@ -18,8 +18,15 @@
 <body>
     <header>
         <a href="#" class="logo"><img src="images/cx-logo-horizontal.svg" alt="宸欣互聯 CHENXIN LINK" /></a>
-        <nav>
+        <!-- 手機、平板的漢堡選單按鈕（電腦版隱藏） -->
+        <button class="nav-toggle" type="button" aria-label="切換選單" aria-expanded="false" aria-controls="site-nav">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+        </button>
+        <nav id="site-nav">
             <a href="#about">關於我們</a>
+            <a href="#culture">企業精神</a>
             <a href="#services">核心服務</a>
             <a href="#process">合作流程</a>
             <a href="#products">商品代理</a>
@@ -46,6 +53,70 @@
             「宸欣互聯股份有限公司」深耕品牌代理與經銷業務，建立涵蓋商務拓展、電商營運、客戶服務與售後維修的完整通路網絡。我們深信，合作的核心在於「誠信」，經銷的終點在於「共榮」。透過專業的品牌視覺設計與行銷企劃資源，結合穩健的行政管理與物流運輸體系，我們致力於協助合作品牌精準觸及市場，成為您拓展市場版圖最值得信賴的長期經銷夥伴。
         </p>
     </section>
+
+    <!-- 企業精神（取自〈企業傳承精神與核心文化手冊〉） -->
+    <section id="culture" class="culture">
+        <h2 class="section-title">企業精神</h2>
+        <p class="culture-motto">
+            <span>以誠心為根，使誠信為葉；</span>
+            <span>用專業共榮夥伴，就謙遜互聯世界。</span>
+        </p>
+        <div class="culture-grid">
+            <div class="culture-card">
+                <i class="fa-solid fa-seedling culture-icon"></i>
+                <span class="culture-en" lang="en">ROOT</span>
+                <h3>根</h3>
+                <p class="culture-target">對待廠商夥伴</p>
+                <p class="culture-lead">穩固基礎，大樹才能茁壯。</p>
+                <div class="service-more">
+                    <div>
+                        <p>照顧好廠商的品牌，嚴格把關品質與細節；站在夥伴的角度思考，做廠商最安心、最堅實的後盾。</p>
+                    </div>
+                </div>
+                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="culture-card">
+                <i class="fa-solid fa-leaf culture-icon"></i>
+                <span class="culture-en" lang="en">LEAF</span>
+                <h3>葉</h3>
+                <p class="culture-target">對待連鎖通路</p>
+                <p class="culture-lead">向外開展，生態才能不息。</p>
+                <div class="service-more">
+                    <div>
+                        <p>秒懂通路採購的痛點與需求，在最短時間內提供專業方案；用實打實的「誠信」履約，成就通路與產品的最大價值。</p>
+                    </div>
+                </div>
+                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="culture-card">
+                <i class="fa-solid fa-handshake culture-icon"></i>
+                <span class="culture-en" lang="en">SYNERGY</span>
+                <h3>榮</h3>
+                <p class="culture-target">中間經銷樞紐</p>
+                <p class="culture-lead">不求單贏，四方才能互利。</p>
+                <div class="service-more">
+                    <div>
+                        <p>杜絕任何內部消耗與內鬥，一切以公司、客戶、廠商的整體利益為優先，發揮最強大的協作與護航能力。</p>
+                    </div>
+                </div>
+                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="culture-card">
+                <i class="fa-solid fa-wheat-awn culture-icon"></i>
+                <span class="culture-en" lang="en">HUMILITY</span>
+                <h3>謙</h3>
+                <p class="culture-target">企業胸懷願景</p>
+                <p class="culture-lead">虛懷若谷，世界才能互聯。</p>
+                <div class="service-more">
+                    <div>
+                        <p>不論企業發展多大，小至基層採購與廠商業務，大至通路高層與品牌老闆，始終保持謙卑與尊重；立足台灣，將優質產品引進推出，連結全球。</p>
+                    </div>
+                </div>
+                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+        </div>
+    </section>
+
     <!-- 核心服務 -->
     <section id="services" class="services">
         <h2 class="section-title">核心服務</h2>

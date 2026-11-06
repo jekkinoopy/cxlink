@@ -3,6 +3,18 @@ document.documentElement.classList.add("js");
 
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector("header");
+
+    // 手機、平板：漢堡選單開關，點選項目後自動收起
+    const navToggle = document.querySelector(".nav-toggle");
+    const setNav = (open) => {
+        header.classList.toggle("nav-open", open);
+        navToggle.setAttribute("aria-expanded", String(open));
+    };
+    navToggle.addEventListener("click", () => setNav(!header.classList.contains("nav-open")));
+    document.querySelectorAll("nav a").forEach((a) => a.addEventListener("click", () => setNav(false)));
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 980) setNav(false);
+    });
     const progress = document.createElement("div");
     progress.className = "scroll-progress";
     document.body.appendChild(progress);
@@ -29,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const groups = [
         ".section-title",
         ".about p",
+        ".culture-motto",
+        ".culture-card",
         ".service-card",
         ".brand-marquee",
         ".works-intro, .works-tabs",
@@ -64,12 +78,20 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     document.querySelectorAll(".reveal, .process-steps, .works-panels").forEach((el) => revealObserver.observe(el));
 
-    // 核心服務：展開 / 收合完整說明
+    // 核心服務、企業精神：展開 / 收合完整說明
     document.querySelectorAll(".service-toggle").forEach((btn) => {
+        btn.dataset.label = btn.firstChild.textContent;
         btn.addEventListener("click", () => {
-            const open = btn.closest(".service-card").classList.toggle("open");
-            btn.setAttribute("aria-expanded", open);
-            btn.firstChild.textContent = open ? "收合" : "了解更多";
+            const card = btn.closest(".service-card, .culture-card");
+            const open = !card.classList.contains("open");
+            // 企業精神的四張卡片等高排列，一起展開 / 收合才不會有卡片被拉長留白
+            const cards = card.classList.contains("culture-card") ? document.querySelectorAll(".culture-card") : [card];
+            cards.forEach((c) => {
+                const b = c.querySelector(".service-toggle");
+                c.classList.toggle("open", open);
+                b.setAttribute("aria-expanded", open);
+                b.firstChild.textContent = open ? "收合" : b.dataset.label;
+            });
         });
     });
 

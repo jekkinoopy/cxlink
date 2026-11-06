@@ -157,6 +157,157 @@ section {
     text-align: justify;
 }
 
+/* 企業精神：深藍底的精神標語帶，燙金大字 + 四章文化卡片 */
+.culture {
+    background-color: var(--cx-blue);
+    background-image: radial-gradient(circle at 50% 0%, rgba(212, 178, 111, 0.12), transparent 60%);
+    color: #ffffff;
+}
+
+.culture .section-title {
+    color: #ffffff;
+}
+
+.culture-motto {
+    margin-bottom: 70px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.8;
+    letter-spacing: 6px;
+    background: linear-gradient(110deg, #b8944f 0%, #e5c380 20%, #f7e7bf 30%, #d4b26f 45%, #b8944f 60%, #e5c380 80%, #b8944f 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: foil-text 8s linear infinite;
+}
+
+.culture-motto span {
+    display: block;
+}
+
+.culture-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 卡片等高，「行為準則」按鈕推到底部對齊 */
+.culture-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 26px 30px;
+    border: 1px solid rgba(212, 178, 111, 0.25);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.4s, background-color 0.4s, transform 0.4s;
+}
+
+.culture-card:hover {
+    border-color: var(--cx-gold-foil);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-4px);
+}
+
+.culture-icon {
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--cx-gold-foil);
+    border-radius: 50%;
+    color: var(--cx-gold-foil);
+    font-size: 20px;
+    transition: background-color 0.4s, color 0.4s;
+}
+
+.culture-card:hover .culture-icon {
+    background: var(--cx-gold-foil);
+    color: var(--cx-blue);
+}
+
+.culture-en {
+    display: block;
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--cx-gold-foil);
+    opacity: 0.8;
+}
+
+/* 卡片標題只有一個字（根、葉、榮、謙），放大成燙金主視覺，完整句子交給上方標語 */
+.culture-card h3 {
+    margin-top: 6px;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.3;
+    background: linear-gradient(135deg, #f7e7bf, #d4b26f 50%, #b8944f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.culture-target {
+    margin-top: 2px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #9aa7b8;
+}
+
+.culture-lead {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    line-height: 1.9;
+    color: #d6dce4;
+}
+
+.culture-card .service-more p {
+    font-size: 13px;
+    color: #b4bfcc;
+    text-align: left;
+}
+
+.culture-card .culture-lead,
+.culture-card .service-more {
+    align-self: stretch;
+}
+
+/* 收合時 service-more 高度為 0，靠它的 margin-bottom 保留跟按鈕之間的距離 */
+.culture-card .service-more {
+    margin-bottom: 20px;
+}
+
+.culture-card .service-toggle {
+    margin: auto auto 0;
+}
+
+.culture-card .service-toggle:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+@media (max-width: 1000px) {
+    .culture-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .culture-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .culture-motto {
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+}
+
 /* =========================================
    組織架構圖 (無縫整合企業變數)
    ========================================= */
@@ -396,12 +547,14 @@ section {
 }
 
 html:not(.js) .service-more p,
-.service-card.open .service-more p {
+.service-card.open .service-more p,
+.culture-card.open .service-more p {
     opacity: 1;
     transition-delay: 0.15s;
 }
 
-.service-card.open .service-more {
+.service-card.open .service-more,
+.culture-card.open .service-more {
     grid-template-rows: 1fr;
 }
 
@@ -437,7 +590,8 @@ html:not(.js) .service-more p,
     transition: transform 0.4s ease;
 }
 
-.service-card.open .service-toggle i {
+.service-card.open .service-toggle i,
+.culture-card.open .service-toggle i {
     transform: rotate(180deg);
 }
 
@@ -1620,10 +1774,6 @@ nav a.active {
     .hero-slogan {
         font-size: 16px;
     }
-
-    nav {
-        display: none;
-    }
 }
 
 /* =========================================
@@ -1701,5 +1851,173 @@ nav a.active {
         top: 50%;
         width: calc(var(--org-indent) / 2);
         border-top: var(--org-line);
+    }
+}
+
+/* =========================================
+   響應式：手機、平板（電腦版不受影響）
+   ========================================= */
+
+/* 漢堡選單按鈕：電腦版隱藏 */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-toggle-bar {
+    display: block;
+    height: 2px;
+    background: var(--cx-blue);
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* 平板以下：八個選單放不下，改成漢堡選單 */
+@media (max-width: 980px) {
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    nav {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 5%;
+        width: min(320px, 90%);
+        display: flex;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        background: #ffffff;
+        border: 1px solid rgba(212, 178, 111, 0.3);
+        box-shadow: 0 12px 24px rgba(17, 24, 34, 0.14);
+        transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+    }
+
+    header.nav-open nav {
+        max-height: 520px;
+        padding: 8px 0;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    nav a {
+        margin: 0;
+        padding: 12px 20px;
+    }
+
+    nav a:not(.nav-btn) {
+        padding-bottom: 12px;
+    }
+
+    nav a:not(.nav-btn)::after {
+        display: none;
+    }
+
+    nav a:not(.nav-btn):hover {
+        background: rgba(212, 178, 111, 0.1);
+    }
+
+    .nav-btn {
+        margin: 8px 20px 4px;
+        text-align: center;
+    }
+
+    header.nav-open .nav-toggle-bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    header.nav-open .nav-toggle-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    header.nav-open .nav-toggle-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 14px 5%;
+    }
+
+    section {
+        scroll-margin-top: 64px;
+    }
+
+    /* 合作流程：五欄擠在一起字會一直斷行，改成直排，連接線改直線 */
+    .process-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+    }
+
+    .step {
+        max-width: 320px;
+    }
+
+    .step:not(:last-child)::after {
+        top: 100%;
+        left: 50%;
+        width: 0;
+        height: 36px;
+        border-top: none;
+        border-left: 1px solid rgba(212, 178, 111, 0.5);
+    }
+
+    .js .process-steps .step:not(:last-child)::after {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    .js .process-steps.in-view .step:not(:last-child)::after {
+        transform: scaleY(1);
+    }
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 72px 6%;
+    }
+
+    /* 首頁按鈕：英文字太長會斷成兩行，縮小字距讓它維持一行 */
+    .hero-card-area {
+        padding: 40px 0;
+    }
+
+    .cta-btn {
+        padding: 12px 24px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    /* 企業精神標語：一句放得下一行 */
+    .culture-motto {
+        font-size: 17px;
+        letter-spacing: 2px;
+    }
+
+    /* 設計作品頁籤：四個排成兩排兩個 */
+    .works-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-content: center;
+        gap: 4px 28px;
+    }
+
+    /* 聯絡我們：資訊與表單滿版，不再各留一層內距 */
+    .contact-info,
+    .contact-form {
+        min-width: 100%;
+        padding: 20px 0;
     }
 }
