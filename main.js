@@ -88,6 +88,35 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // 聯絡表單：寄送成功才顯示成功，失敗時提供其他聯絡方式
+    const contactForm = document.querySelector(".contact-form form");
+    if (contactForm) {
+        const status = contactForm.querySelector(".form-status");
+        const submit = contactForm.querySelector(".submit-btn");
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            submit.disabled = true;
+            status.classList.remove("is-error");
+            status.textContent = "送出中……";
+            try {
+                const res = await fetch(contactForm.dataset.ajax, {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: new FormData(contactForm),
+                });
+                const data = await res.json();
+                if (!res.ok || String(data.success) !== "true") throw new Error(data.message);
+                contactForm.reset();
+                status.textContent = "已收到您的諮詢，我們會盡快與您聯繫。";
+            } catch {
+                status.classList.add("is-error");
+                status.textContent = "送出失敗，請改撥 (02) 6627-0526 或來信 howardchen@cxlink.com.tw。";
+            } finally {
+                submit.disabled = false;
+            }
+        });
+    }
+
     // 設計作品：分類頁籤切換
     const tabs = document.querySelectorAll(".works-tab");
     tabs.forEach((tab) => {

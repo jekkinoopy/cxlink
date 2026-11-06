@@ -38,7 +38,7 @@
         <div class="hero-card-area">
             <h1 class="hero-logo"><img src="images/cx-logo-square.svg" alt="宸欣互聯 CHENXIN LINK" /></h1>
             <div class="hero-slogan">誠信共榮 ｜ 互聯世界</div>
-            <a href="#contact" class="cta-btn">ENTERTAIN COOPERATION</a>
+            <a href="#contact" class="cta-btn">CONTACT US</a>
         </div>
         <a href="#about" class="scroll-cue" aria-label="往下捲動"><span></span></a>
     </section>
@@ -366,17 +366,21 @@
             </p>
         </div>
         <div class="contact-form">
-            <form action="#" method="POST" onsubmit="alert('諮詢表單已成功送出！'); return false;">
+            <!-- 透過 FormSubmit 寄到公司信箱；第一次送出後，收件人要點確認信才會開始收信 -->
+            <form action="https://formsubmit.co/howardchen@cxlink.com.tw" method="POST" data-ajax="https://formsubmit.co/ajax/howardchen@cxlink.com.tw">
+                <input type="hidden" name="_subject" value="宸欣互聯官網：新的諮詢" />
+                <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="form-group">
-                    <input type="text" placeholder="您的姓名 / 公司名稱" required />
+                    <input type="text" name="姓名／公司" placeholder="您的姓名 / 公司名稱" required />
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="電子信箱" required />
+                    <input type="email" name="email" placeholder="電子信箱" required />
                 </div>
                 <div class="form-group">
-                    <textarea rows="4" placeholder="請簡述您的品牌代理或經銷合作需求..." required></textarea>
+                    <textarea rows="4" name="諮詢內容" placeholder="請簡述您的品牌代理或經銷合作需求..." required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">送出諮詢，開創共榮</button>
+                <p class="form-status" role="status"></p>
             </form>
         </div>
         </div>

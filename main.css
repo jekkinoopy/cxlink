@@ -1169,6 +1169,27 @@ section {
     background: #e5c380;
 }
 
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* 防垃圾信欄位：真人看不到，機器人填了就會被擋 */
+.form-honey {
+    display: none;
+}
+
+.form-status {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #e5c380;
+}
+
+.form-status.is-error {
+    color: #f2b8a8;
+}
+
 footer {
     background: #111822;
     color: #666;
