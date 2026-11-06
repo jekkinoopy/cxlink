@@ -40,12 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 捲動進場：同一組裡的元素依序浮現
     const groups = [
         ".section-title",
-        ".about p",
-        ".culture-motto",
+        ".about-intro",
         ".culture-card",
         ".service-card",
         ".brand-marquee",
-        ".works-intro, .works-tabs",
+        ".works-tabs",
         ".org-chart .node",
         ".contact-slogan-block",
         ".contact-info, .contact-form",
@@ -76,24 +75,18 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
     );
-    document.querySelectorAll(".reveal, .process-steps, .works-panels").forEach((el) => revealObserver.observe(el));
+    document.querySelectorAll(".reveal, .works-panels").forEach((el) => revealObserver.observe(el));
 
-    // 核心服務、企業精神：展開 / 收合完整說明
-    document.querySelectorAll(".service-toggle").forEach((btn) => {
-        btn.dataset.label = btn.firstChild.textContent;
-        btn.addEventListener("click", () => {
-            const card = btn.closest(".service-card, .culture-card");
-            const open = !card.classList.contains("open");
-            // 企業精神的四張卡片等高排列，一起展開 / 收合才不會有卡片被拉長留白
-            const cards = card.classList.contains("culture-card") ? document.querySelectorAll(".culture-card") : [card];
-            cards.forEach((c) => {
-                const b = c.querySelector(".service-toggle");
-                c.classList.toggle("open", open);
-                b.setAttribute("aria-expanded", open);
-                b.firstChild.textContent = open ? "收合" : b.dataset.label;
-            });
+    // 關於我們：一顆按鈕展開 / 收合四張卡片的行為準則
+    const cultureToggle = document.querySelector(".culture-toggle");
+    if (cultureToggle) {
+        cultureToggle.addEventListener("click", () => {
+            const open = cultureToggle.getAttribute("aria-expanded") !== "true";
+            document.querySelectorAll(".culture-card").forEach((card) => card.classList.toggle("open", open));
+            cultureToggle.setAttribute("aria-expanded", open);
+            cultureToggle.firstChild.textContent = open ? "收合" : "行為準則";
         });
-    });
+    }
 
     // 設計作品：分類頁籤切換
     const tabs = document.querySelectorAll(".works-tab");

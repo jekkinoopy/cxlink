@@ -26,12 +26,9 @@
         </button>
         <nav id="site-nav">
             <a href="#about">關於我們</a>
-            <a href="#culture">企業精神</a>
             <a href="#services">核心服務</a>
-            <a href="#process">合作流程</a>
             <a href="#products">商品代理</a>
-            <a href="#works">設計作品</a>
-            <a href="#organization">組織架構</a>
+            <!-- 設計作品暫時隱藏，有作品後恢復：<a href="#works">設計作品</a> -->
             <a href="#contact" class="nav-btn">聯絡我們</a>
         </nav>
     </header>
@@ -46,75 +43,55 @@
         <a href="#about" class="scroll-cue" aria-label="往下捲動"><span></span></a>
     </section>
 
-    <!-- 關於我們 -->
+    <!-- 關於我們：公司介紹 + 四章文化卡片（取自〈企業傳承精神與核心文化手冊〉） -->
     <section id="about" class="about">
         <h2 class="section-title">關於我們</h2>
-        <p>
-            「宸欣互聯股份有限公司」深耕品牌代理與經銷業務，建立涵蓋商務拓展、電商營運、客戶服務與售後維修的完整通路網絡。我們深信，合作的核心在於「誠信」，經銷的終點在於「共榮」。透過專業的品牌視覺設計與行銷企劃資源，結合穩健的行政管理與物流運輸體系，我們致力於協助合作品牌精準觸及市場，成為您拓展市場版圖最值得信賴的長期經銷夥伴。
-        </p>
-    </section>
-
-    <!-- 企業精神（取自〈企業傳承精神與核心文化手冊〉） -->
-    <section id="culture" class="culture">
-        <h2 class="section-title">企業精神</h2>
-        <p class="culture-motto">
-            <span>以誠心為根，使誠信為葉；</span>
-            <span>用專業共榮夥伴，就謙遜互聯世界。</span>
+        <p class="about-intro">
+            宸欣互聯股份有限公司立足台灣，深耕品牌代理與經銷，是連結品牌廠商與連鎖通路的中間樞紐。我們將優質產品引進推出，陪伴品牌走進市場，也讓通路與消費者獲得值得信賴的選擇。
         </p>
         <div class="culture-grid">
             <div class="culture-card">
                 <i class="fa-solid fa-seedling culture-icon"></i>
-                <span class="culture-en" lang="en">ROOT</span>
                 <h3>根</h3>
-                <p class="culture-target">對待廠商夥伴</p>
-                <p class="culture-lead">穩固基礎，大樹才能茁壯。</p>
-                <div class="service-more">
+                <p class="culture-philosophy">廠商夥伴是基石，<br />大樹才能抽芽茁壯。</p>
+                <div class="culture-more">
                     <div>
-                        <p>照顧好廠商的品牌，嚴格把關品質與細節；站在夥伴的角度思考，做廠商最安心、最堅實的後盾。</p>
+                        <p class="culture-rule">照顧廠商品牌，<br />把關品質細節，<br />做夥伴最安心的後盾。</p>
                     </div>
                 </div>
-                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
             </div>
             <div class="culture-card">
                 <i class="fa-solid fa-leaf culture-icon"></i>
-                <span class="culture-en" lang="en">LEAF</span>
                 <h3>葉</h3>
-                <p class="culture-target">對待連鎖通路</p>
-                <p class="culture-lead">向外開展，生態才能不息。</p>
-                <div class="service-more">
+                <p class="culture-philosophy">通路客戶是枝椏，<br />生態才能生生不息。</p>
+                <div class="culture-more">
                     <div>
-                        <p>秒懂通路採購的痛點與需求，在最短時間內提供專業方案；用實打實的「誠信」履約，成就通路與產品的最大價值。</p>
+                        <p class="culture-rule">秒懂通路痛點，<br />極速提出方案，<br />用誠信成就通路價值。</p>
                     </div>
                 </div>
-                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
             </div>
             <div class="culture-card">
                 <i class="fa-solid fa-handshake culture-icon"></i>
-                <span class="culture-en" lang="en">SYNERGY</span>
                 <h3>榮</h3>
-                <p class="culture-target">中間經銷樞紐</p>
-                <p class="culture-lead">不求單贏，四方才能互利。</p>
-                <div class="service-more">
+                <p class="culture-philosophy">不是單向的獲利，<br />而是四方共好生態。</p>
+                <div class="culture-more">
                     <div>
-                        <p>杜絕任何內部消耗與內鬥，一切以公司、客戶、廠商的整體利益為優先，發揮最強大的協作與護航能力。</p>
+                        <p class="culture-rule">團隊同心協力，<br />共同利益優先，<br />與夥伴創造長遠價值。</p>
                     </div>
                 </div>
-                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
             </div>
             <div class="culture-card">
                 <i class="fa-solid fa-wheat-awn culture-icon"></i>
-                <span class="culture-en" lang="en">HUMILITY</span>
                 <h3>謙</h3>
-                <p class="culture-target">企業胸懷願景</p>
-                <p class="culture-lead">虛懷若谷，世界才能互聯。</p>
-                <div class="service-more">
+                <p class="culture-philosophy">稻穗越熟頭越低，<br />虛懷才能擁抱世界。</p>
+                <div class="culture-more">
                     <div>
-                        <p>不論企業發展多大，小至基層採購與廠商業務，大至通路高層與品牌老闆，始終保持謙卑與尊重；立足台灣，將優質產品引進推出，連結全球。</p>
+                        <p class="culture-rule">不論職位高低，<br />始終保持尊重，<br />立足台灣並連結全球。</p>
                     </div>
                 </div>
-                <button class="service-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
             </div>
         </div>
+        <button class="culture-toggle" type="button" aria-expanded="false">行為準則<i class="fa-solid fa-chevron-down"></i></button>
     </section>
 
     <!-- 核心服務 -->
@@ -123,80 +100,31 @@
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-head">
-                    <i class="fa-solid fa-chart-line service-icon"></i>
-                    <h3>營收表現</h3>
+                    <i class="fa-solid fa-truck-fast service-icon"></i>
+                    <h3>通路經銷</h3>
                 </div>
-                <p class="service-lead">連年攀升，年年寫下新紀錄。</p>
-                <div class="service-more">
-                    <div>
-                        <p>
-                            從代理起步到穩居區域經銷要角，我們的營收連年攀升、從未停下成長的腳步。這份成績來自營運發展處商務拓展部每一次精準開發的新客源，也來自電子商務部持續優化的線上銷售通路；再加上客戶支援處完整的售後維修保固，讓客戶一次合作、終身信任。營收自然跟著水漲船高，年年寫下新紀錄。
-                        </p>
-                    </div>
-                </div>
-                <button class="service-toggle" type="button" aria-expanded="false">了解更多<i class="fa-solid fa-chevron-down"></i></button>
+                <p class="service-lead">通路開發．線上銷售</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
-                    <i class="fa-solid fa-award service-icon"></i>
-                    <h3>品牌數量</h3>
+                    <i class="fa-solid fa-pen-nib service-icon"></i>
+                    <h3>視覺設計</h3>
                 </div>
-                <p class="service-lead">設計先行，上百品牌齊聚旗下。</p>
-                <div class="service-more">
-                    <div>
-                        <p>
-                            從單一品牌到如今上百個品牌齊聚旗下，我們始終相信：吸引品牌的關鍵在於設計。視覺設計處的平面視覺團隊打造品牌Logo與識別，廣告影音部則專職短影片設計與影音製作，為每個品牌量身打造能被看見、被記住的內容；行銷企劃處接力經營品牌聲量與社群口碑。設計先行、行銷接力，讓品牌版圖持續雲集、越聚越大。
-                        </p>
-                    </div>
-                </div>
-                <button class="service-toggle" type="button" aria-expanded="false">了解更多<i class="fa-solid fa-chevron-down"></i></button>
+                <p class="service-lead">品牌識別．影音製作</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
-                    <i class="fa-solid fa-store service-icon"></i>
-                    <h3>通路版圖</h3>
+                    <i class="fa-solid fa-bullhorn service-icon"></i>
+                    <h3>行銷企劃</h3>
                 </div>
-                <p class="service-lead">從城市到鄉鎮，通路密布全台。</p>
-                <div class="service-more">
-                    <div>
-                        <p>
-                            從城市門市到鄉鎮角落，我們的通路版圖持續擴張、密布全台。物流運輸部確保每一次配送都精準到位，資訊管理部讓後台系統穩定支撐各通路運作；客戶服務部與售後維修部在第一線守住服務品質，讓消費者不論在哪個通路購買，都能獲得同樣值得信賴的體驗。這正是我們通路愈加密布的底氣。
-                        </p>
-                    </div>
+                <p class="service-lead">品牌行銷．社群經營</p>
+            </div>
+            <div class="service-card">
+                <div class="service-head">
+                    <i class="fa-solid fa-headset service-icon"></i>
+                    <h3>客戶支援</h3>
                 </div>
-                <button class="service-toggle" type="button" aria-expanded="false">了解更多<i class="fa-solid fa-chevron-down"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 合作流程 -->
-    <section id="process" class="process">
-        <h2 class="section-title">合作流程</h2>
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-num">01</div>
-                <h3>需求洽談</h3>
-                <p>了解品牌定位與市場目標，討論代理條件與合作模式。</p>
-            </div>
-            <div class="step">
-                <div class="step-num">02</div>
-                <h3>商品評估</h3>
-                <p>評估商品特性與市場潛力，規劃最適合的代理與銷售策略。</p>
-            </div>
-            <div class="step">
-                <div class="step-num">03</div>
-                <h3>簽約合作</h3>
-                <p>確認合作條件並正式簽約，啟動代理經銷關係。</p>
-            </div>
-            <div class="step">
-                <div class="step-num">04</div>
-                <h3>上市推廣</h3>
-                <p>整合設計、行銷與通路資源，協助商品順利上市曝光。</p>
-            </div>
-            <div class="step">
-                <div class="step-num">05</div>
-                <h3>售後維護</h3>
-                <p>持續追蹤銷售表現，提供客服與售後維修的長期支援。</p>
+                <p class="service-lead">客戶服務．售後維修</p>
             </div>
         </div>
     </section>
@@ -278,9 +206,8 @@
     <!-- 設計作品
          換上作品圖：把 <div class="work-placeholder">…</div> 換成 <img src="images/works/檔名.jpg" alt="作品名稱" />
          影音作品：在 figure 加上 data-video="https://www.youtube.com/embed/影片ID"，點擊會開啟燈箱播放 -->
-    <section id="works" class="works">
+    <section id="works" class="works" hidden>
         <h2 class="section-title">設計作品</h2>
-        <p class="works-intro">從品牌識別到影音內容，視覺設計處以一致的美感，為每個品牌說好它的故事。</p>
 
         <div class="works-tabs" role="tablist">
             <button class="works-tab active" role="tab" aria-selected="true" aria-controls="works-web" id="tab-web">
@@ -456,6 +383,10 @@
     </section>
 
     <footer>
+        <p class="footer-motto">
+            <span>以誠心為根，使誠信為葉；</span>
+            <span>用專業共榮夥伴，就謙遜互聯世界。</span>
+        </p>
         <p class="copyright">&copy; 2026 宸欣互聯 CHENXIN LINK. All Rights Reserved.</p>
         <p class="credit">Design by JEKKI LAB</p>
     </footer>
